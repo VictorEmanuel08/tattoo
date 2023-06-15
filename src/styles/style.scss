@@ -1,0 +1,130 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.page {
+  background-color: black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section1,
+.section2,
+.section3,
+.section4 {
+  height: 100vh;
+}
+
+.section1 {
+  display: flex;
+  padding-inline: 2rem;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  flex: 1;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #00ff00;
+  height: 55vh;
+  width: 100%;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+  border-radius: 1rem;
+}
+
+.link {
+  width: 90%;
+  margin: 0.625rem auto;
+  border: 1px solid #000000;
+  border-radius: 0.25rem;
+  padding: 0.625rem;
+}
+
+.link-content {
+  text-align: center;
+  color: #000;
+}
+
+.links-container .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-with-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+}
+
+.icon {
+  /* Estilos para os ícones */
+  border: none; /* Remove a borda */
+}
+
+.icon:first-child {
+  margin-right: 3rem; /* Margem à direita do primeiro ícone */
+}
+
+.icon:last-child {
+  margin-left: 3rem; /* Margem à esquerda do segundo ícone */
+}
+
+// Estilos para telas pequenas (até 768px)
+@media screen and (max-width: 768px) {
+  .section1 {
+    display: flex;
+    flex-direction: column;
+    height: auto; /* Remove a altura fixa */
+    padding-inline: 2rem;
+  }
+
+  .left {
+    order: 1; /* Muda a ordem para ficar no topo */
+    margin-bottom: -8rem;
+  }
+
+  .right {
+    margin-bottom: -5rem;
+    order: 2; /* Muda a ordem para ficar na parte inferior */
+  }
+}
+
+.section2 {
+  background-color: blue;
+}
+
+.section3 {
+  background-color: green;
+}
+
+.section4 {
+  background-color: yellow;
+}
