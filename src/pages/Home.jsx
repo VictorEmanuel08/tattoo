@@ -8,6 +8,8 @@ import {
   AiFillPlusCircle,
   AiOutlineClose,
 } from "react-icons/ai";
+import { BsFillCalendarCheckFill } from "react-icons/bs";
+
 import { Link } from "react-router-dom";
 
 export function Home() {
@@ -23,16 +25,18 @@ export function Home() {
     divsRefs[index].current.scrollIntoView({ behavior: "smooth" });
   };
 
-  const [imageNamesTatto, setImageNamesTatto] = useState([]);
-  const [imagesUserTatto, setImagesUserTatto] = useState([]);
+  const [imageNamesTattoo, setImageNamesTattoo] = useState([]);
+  const [imagesUserTattoo, setImagesUserTattoo] = useState([]);
+  const [imageNamesBody, setImageNamesBody] = useState([]);
+  const [imagesUserBody, setImagesUserBody] = useState([]);
 
-  const handleFileChange = (event) => {
+  const handleFileTatto = (event) => {
     const files = event.target.files;
 
     // Limitando a 3 imagens no máximo
     const selectedFiles = Array.from(files).slice(0, 2);
 
-    if (selectedFiles.length + imageNamesTatto.length > 3) {
+    if (selectedFiles.length + imageNamesTattoo.length > 3) {
       event.target.value = "";
       alert("Você só pode selecionar no máximo 3 arquivos.");
       return;
@@ -40,7 +44,7 @@ export function Home() {
 
     // Salvando o nome das imagens para printar depois
     const newNames = selectedFiles.map((file) => file.name);
-    setImageNamesTatto((prevNames) => [...prevNames, ...newNames]);
+    setImageNamesTattoo((prevNames) => [...prevNames, ...newNames]);
 
     // Salvando as imagens no vetor para enviar
     const readerArray = [];
@@ -51,22 +55,67 @@ export function Home() {
       reader.onload = () => {
         readerArray[i] = reader.result;
         if (readerArray.length === selectedFiles.length) {
-          setImagesUserTatto((prevImages) => [...prevImages, ...readerArray]);
+          setImagesUserTattoo((prevImages) => [...prevImages, ...readerArray]);
         }
       };
 
       reader.readAsDataURL(selectedFiles[i]);
     }
   };
-  const handleDeleteImage = (index) => {
-    const updatedImageNames = [...imageNamesTatto];
-    const updatedImages = [...imagesUserTatto];
+
+  const handleDeleteImageTattoo = (index) => {
+    const updatedImageNames = [...imageNamesTattoo];
+    const updatedImages = [...imagesUserTattoo];
 
     updatedImageNames.splice(index, 1);
     updatedImages.splice(index, 1);
 
-    setImageNamesTatto(updatedImageNames);
-    setImagesUserTatto(updatedImages);
+    setImageNamesTattoo(updatedImageNames);
+    setImagesUserTattoo(updatedImages);
+  };
+
+  const handleFileBody = (event) => {
+    const files = event.target.files;
+
+    // Limitando a 3 imagens no máximo
+    const selectedFiles = Array.from(files).slice(0, 2);
+
+    if (selectedFiles.length + imageNamesBody.length > 3) {
+      event.target.value = "";
+      alert("Você só pode selecionar no máximo 3 arquivos.");
+      return;
+    }
+
+    // Salvando o nome das imagens para printar depois
+    const newNames = selectedFiles.map((file) => file.name);
+    setImageNamesBody((prevNames) => [...prevNames, ...newNames]);
+
+    // Salvando as imagens no vetor para enviar
+    const readerArray = [];
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        readerArray[i] = reader.result;
+        if (readerArray.length === selectedFiles.length) {
+          setImagesUserBody((prevImages) => [...prevImages, ...readerArray]);
+        }
+      };
+
+      reader.readAsDataURL(selectedFiles[i]);
+    }
+  };
+
+  const handleDeleteImageBody = (index) => {
+    const updatedImageNames = [...imageNamesBody];
+    const updatedImages = [...imagesUserBody];
+
+    updatedImageNames.splice(index, 1);
+    updatedImages.splice(index, 1);
+
+    setImageNamesBody(updatedImageNames);
+    setImagesUserBody(updatedImages);
   };
 
   return (
@@ -121,72 +170,113 @@ export function Home() {
         <form className="form-container">
           <div className="form-items">
             <label htmlFor="nome">Nome Completo</label>
-            <input className="form-input" type="text" placeholder="Nome" />
+            <input
+              className="form-input"
+              type="text"
+              placeholder="Nome"
+              required
+            />
           </div>
           <div className="form-group">
-            <div className="form-items" style={{ marginRight: "0.5rem" }}>
-              <label htmlFor="email">E-mail</label>
-              <input className="form-input" type="email" placeholder="E-mail" />
+            <div className="div1">
+              <div className="form-items">
+                <label htmlFor="email">E-mail</label>
+                <input
+                  className="form-input"
+                  type="email"
+                  placeholder="E-mail"
+                  required
+                />
+              </div>
             </div>
-            <div className="form-items" style={{ marginLeft: "0.5rem" }}>
+            {/* <div className="div2"> */}
+            <div className="form-items">
               <label htmlFor="whatsApp">WhatsApp</label>
               <input
                 className="form-input"
                 type="text"
                 placeholder="WhatsApp"
+                required
               />
             </div>
+            {/* </div> */}
           </div>
-          <span className="form.text">
+          <span className="form-text">
             Abaixo você deixara a inspiração de sua tatuagem e posição do corpo
             no qual será feito.
           </span>
           <div className="form-group">
-            <div className="form-items" style={{ marginRight: "0.5rem" }}>
-              <label htmlFor="tattoo" className="file-label">
-                Referencia da tatto
-                <AiFillPlusCircle className="file-icon" />
-                <input
-                  id="tattoo"
-                  type="file"
-                  className="form-input"
-                  accept="image/*"
-                  multiple
-                  onChange={handleFileChange}
-                />
-              </label>
-              {/* VERIFICAR MULTIPLE
-              VERIRICAR O MARGIN DOS NAMES */}
-              <div className="file-names">
-                {imageNamesTatto.map((file, index) => {
-                  return (
-                    <div key={index} className="files-images">
-                      <span className="file-name">{file}</span>
-                      <AiOutlineClose
-                        className="delete-icon"
-                        onClick={() => handleDeleteImage(index)}
-                      />
-                    </div>
-                  );
-                })}
+            <div className="div1">
+              <div className="form-items" style={{ marginRight: "0.5rem" }}>
+                <label htmlFor="tattoo" className="file-label">
+                  Referencia da tatto
+                  <AiFillPlusCircle className="file-icon" />
+                  <input
+                    id="tattoo"
+                    type="file"
+                    className="form-input"
+                    accept="image/*"
+                    multiple
+                    onChange={handleFileTatto}
+                    required
+                  />
+                </label>
+                <div className="file-names">
+                  {imageNamesTattoo.map((file, index) => {
+                    return (
+                      <div key={index} className="files-images">
+                        <span className="file-name">{file}</span>
+                        <AiOutlineClose
+                          className="delete-icon"
+                          onClick={() => handleDeleteImageTattoo(index)}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-            <div className="form-items" style={{ marginLeft: "0.5rem" }}>
-              <label htmlFor="corpo" className="file-label">
-                Parte do corpo
-                <AiFillPlusCircle className="file-icon" />
-              </label>
-              <input
-                id="corpo"
-                type="file"
-                className="form-input"
-                accept="image/*"
-              />
+
+            {/* PARTE DO CORPO*/}
+            <div className="div2">
+              <div className="form-items" style={{ marginRight: "0.5rem" }}>
+                <label htmlFor="body" className="file-label">
+                  Parte do corpo
+                  <AiFillPlusCircle className="file-icon" />
+                  <input
+                    id="body"
+                    type="file"
+                    className="form-input"
+                    accept="image/*"
+                    multiple
+                    onChange={handleFileBody}
+                    required
+                  />
+                </label>
+                <div className="file-names">
+                  {imageNamesBody.map((file, index) => {
+                    return (
+                      <div key={index} className="files-images">
+                        <span className="file-name">{file}</span>
+                        <AiOutlineClose
+                          className="delete-icon"
+                          onClick={() => handleDeleteImageBody(index)}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
-          <input type="date" placeholder="Data" />
+          <div className="form-items">
+            <div className="file-label">
+              <span>Escolha sua data: </span>
+              <BsFillCalendarCheckFill className="file-icon" />
+            </div>
+          </div>
           <button type="submit" className="submit-button">
-            Enviar
+            <span>Enviar</span>
           </button>
         </form>
       </section>
