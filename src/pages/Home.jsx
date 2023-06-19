@@ -3,7 +3,11 @@ import "../styles/style.scss";
 import Logo from "../assets/Tattoo CollectioN-1.png";
 import logoPng from "../assets/Tattoo Collection.png";
 
-import { AiOutlineInstagram, AiFillPlusCircle } from "react-icons/ai";
+import {
+  AiOutlineInstagram,
+  AiFillPlusCircle,
+  AiOutlineClose,
+} from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 export function Home() {
@@ -21,30 +25,48 @@ export function Home() {
 
   const [imageNamesTatto, setImageNamesTatto] = useState([]);
   const [imagesUserTatto, setImagesUserTatto] = useState([]);
-  const [imageNamesCorpo, setImageNamesCorpo] = useState([]);
-  const [imagesUserCorpo, setImagesUserCorpo] = useState([]);
 
   const handleFileChange = (event) => {
     const files = event.target.files;
+
+    // Limitando a 3 imagens no máximo
+    const selectedFiles = Array.from(files).slice(0, 2);
+
+    if (selectedFiles.length + imageNamesTatto.length > 3) {
+      event.target.value = "";
+      alert("Você só pode selecionar no máximo 3 arquivos.");
+      return;
+    }
+
     // Salvando o nome das imagens para printar depois
-    const newNames = Array.from(files).map((file) => file.name);
+    const newNames = selectedFiles.map((file) => file.name);
     setImageNamesTatto((prevNames) => [...prevNames, ...newNames]);
 
     // Salvando as imagens no vetor para enviar
     const readerArray = [];
 
-    for (let i = 0; i < files.length; i++) {
+    for (let i = 0; i < selectedFiles.length; i++) {
       const reader = new FileReader();
 
       reader.onload = () => {
         readerArray[i] = reader.result;
-        if (readerArray.length === files.length) {
-          setImagesUserTatto([...imagesUserTatto, ...readerArray]);
+        if (readerArray.length === selectedFiles.length) {
+          setImagesUserTatto((prevImages) => [...prevImages, ...readerArray]);
         }
       };
 
-      reader.readAsDataURL(files[i]);
+      reader.readAsDataURL(selectedFiles[i]);
     }
+  };
+  const handleDeleteImage = (index) => {
+    const updatedImageNames = [...imageNamesTatto];
+    const updatedImages = [...imagesUserTatto];
+
+    updatedImageNames.splice(index, 1);
+    updatedImages.splice(index, 1);
+
+    setImageNamesTatto(updatedImageNames);
+    setImagesUserTatto(updatedImages);
   };
 
   return (
@@ -138,9 +160,13 @@ export function Home() {
               <div className="file-names">
                 {imageNamesTatto.map((file, index) => {
                   return (
-                    <span key={index} className="file-name">
-                      {file}
-                    </span>
+                    <div key={index} className="files-images">
+                      <span className="file-name">{file}</span>
+                      <AiOutlineClose
+                        className="delete-icon"
+                        onClick={() => handleDeleteImage(index)}
+                      />
+                    </div>
                   );
                 })}
               </div>
