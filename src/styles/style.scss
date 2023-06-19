@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
 html,
 body {
   margin: 0;
@@ -10,8 +12,10 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-family: Montserrat;
 }
 
+.section0,
 .section1,
 .section2,
 .section3,
@@ -19,87 +23,96 @@ body {
   height: 100vh;
 }
 
-.section1 {
+.section0 {
   display: flex;
-  padding-inline: 2rem;
-}
 
-.left {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.right {
-  flex: 1;
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    max-width: 100%;
-    max-height: 100%;
+  .left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-}
 
-.links-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #00ff00;
-  height: 55vh;
-  width: 100%;
-  margin-top: 20vh;
-  margin-bottom: 20vh;
-  border-radius: 1rem;
-}
+  .right {
+    flex: 1;
+  }
 
-.link {
-  width: 90%;
-  margin: 0.625rem auto;
-  border: 1px solid #000000;
-  border-radius: 0.25rem;
-  padding: 0.625rem;
-}
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .logo-section0 {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
 
-.link-content {
-  text-align: center;
-  color: #000;
-}
+  .links-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #00ff00;
+    height: 55vh;
+    width: 100%;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+    border-radius: 1rem;
+  }
 
-.links-container .link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .link {
+    width: 90%;
+    margin: 0.625rem auto;
+    border: 1px solid #000000;
+    border-radius: 0.25rem;
+    padding: 0.625rem;
+    cursor: pointer;
+  }
 
-.link-with-icons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: none;
-}
+  .link-content {
+    text-align: center;
+    color: #000;
+  }
 
-.icon {
-  /* Estilos para os ícones */
-  border: none; /* Remove a borda */
-}
+  .links-container .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.icon:first-child {
-  margin-right: 3rem; /* Margem à direita do primeiro ícone */
-}
+  .link span {
+    transition: all 0.3s ease;
+  }
 
-.icon:last-child {
-  margin-left: 3rem; /* Margem à esquerda do segundo ícone */
+  .link:hover span {
+    font-size: 18px;
+    color: white;
+  }
+
+  .link-with-icons {
+    display: flex;
+    align-items: center;
+    border: none;
+    position: absolute;
+    bottom: 1.4rem;
+    cursor: pointer;
+  }
+
+  .link-with-icons .icon {
+    font-size: 2rem;
+    transition: all 0.3s ease; /* Adiciona uma transição suave */
+  }
+
+  .link-with-icons:hover .icon {
+    font-size: 2.3rem; /* Ajuste o tamanho desejado para o crescimento */
+    color: white;
+  }
 }
 
 // Estilos para telas pequenas (até 768px)
 @media screen and (max-width: 768px) {
-  .section1 {
+  .section0 {
     display: flex;
     flex-direction: column;
     height: auto; /* Remove a altura fixa */
@@ -112,13 +125,106 @@ body {
   }
 
   .right {
+    padding: 1rem;
     margin-bottom: -5rem;
     order: 2; /* Muda a ordem para ficar na parte inferior */
   }
 }
 
+.section1 {
+  background-color: red;
+}
+
 .section2 {
-  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+
+  .div1 {
+    margin-right: 1rem; /* Adiciona espaço entre as divs */
+  }
+  .image-logo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    .logo-sections {
+      position: absolute;
+      top: 0;
+      max-width: 20%;
+      max-height: 20%;
+    }
+  }
+  .form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #00ff00;
+    padding: 1rem;
+  }
+  .form-items {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 100%;
+    .form-input {
+      border: none;
+      outline: none;
+      border-radius: 0.2rem;
+      padding: 0.5rem;
+      margin-top: 0.2rem;
+    }
+  }
+  .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  span {
+    font-size: 1rem;
+    text-align: justify;
+    margin-bottom: 1rem;
+  }
+  .file-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .file-names {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.7rem;
+  }
+  
+  .file-name {
+    display: inline-block;
+    margin-right: 2rem;
+    background-color: #191970;
+    padding: 0.3rem 0.2rem;
+    border-radius: 5px;
+    font-size: 0.5rem;
+    color: white;
+  }
+
+  .file-icon {
+    color: #191970;
+    margin-left: 0.3rem;
+    transition: all 0.3s ease;
+  }
+  .file-icon:hover {
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .submit-button {
+    padding: 10px 20px;
+  }
 }
 
 .section3 {
