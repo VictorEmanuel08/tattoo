@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/style.scss";
 import Logo from "../assets/Tattoo CollectioN-1.png";
 import logoPng from "../assets/Tattoo Collection.png";
@@ -21,9 +21,36 @@ export function Home() {
     useRef(null),
   ];
 
+  //Revelar ao rolar
+  const revealSection = (index) => {
+    const sectionElement = divsRefs[index].current;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          sectionElement.classList.add("revealed");
+        } else {
+          sectionElement.classList.remove("revealed");
+        }
+      });
+    });
+
+    observer.observe(sectionElement);
+
+    return () => {
+      observer.unobserve(sectionElement);
+    };
+  };
+
   const scrollToDiv = (index) => {
     divsRefs[index].current.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    divsRefs.forEach((ref, index) => {
+      revealSection(index);
+    });
+  }, []);
 
   const [imageNamesTattoo, setImageNamesTattoo] = useState([]);
   const [imagesUserTattoo, setImagesUserTattoo] = useState([]);
