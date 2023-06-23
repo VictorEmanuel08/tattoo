@@ -65,6 +65,7 @@ body {
 
   .right {
     flex: 1;
+    padding-right: 7rem;
   }
 
   .image-container {
@@ -216,20 +217,19 @@ body {
 
   .modal-content {
     background-color: #ffffff;
-    max-width: 50%;
-    padding: 20px;
-    border-radius: 5px;
+    max-width: 60%;
+    border-radius: $radius-size;
     // border: 0.2rem #00ff00 solid;
   }
 
   .swiper_container {
     height: 100%;
-    padding: 2rem 0;
+    padding: 2rem;
     position: relative;
   }
 
   .swiper-slide {
-    width: 50%;
+    width: 40%;
     position: relative;
   }
 
@@ -248,7 +248,7 @@ body {
   }
 
   .swiper-slide img {
-    width: 80%;
+    width: 100%;
     border-radius: 2rem;
     object-fit: cover;
   }
@@ -260,14 +260,15 @@ body {
 
   .slider-controler {
     position: relative;
-    // bottom: 2rem;
+    // bottom: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .slider-controler .swiper-button-next {
-    left: 58% !important;
+    position: absolute;
+    top: 0;
     transform: translateX(-58%) !important;
   }
 
@@ -299,20 +300,29 @@ body {
     }
   }
 
-  .slider-controler .slider-arrow {
-    background: #00ff00;
-    // background: var(--white);
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    left: 42%;
-    transform: translateX(-42%);
-    filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-  }
+  // .slider-controler .slider-arrow {
+  // background: $body-color-second;
+  // background: var(--white);
+  // width: 3rem;
+  // height: 3rem;
+  // border-radius: 50%;
+  // margin-top: 1px;
+  // left: 32%;
+  // transform: translateX(-42%);
+  // filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+  // }
 
-  .slider-controler .slider-arrow ion-icon {
-    font-size: 2rem;
-    color: #222224;
+  .slider-controler .slider-arrow {
+    .arrow-back-outline,
+    .arrow-forward-outline {
+      font-size: 1.5rem;
+      color: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+      // color: $color-form-alt;
+    }
+    .arrow-back-outline:hover,
+    .arrow-forward-outline:hover {
+      color: $body-color;
+    }
   }
 
   .slider-controler .slider-arrow::after {
@@ -327,6 +337,7 @@ body {
 
   .swiper-pagination .swiper-pagination-bullet {
     filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+    background: var(--primary);
   }
 
   .swiper-pagination .swiper-pagination-bullet-active {

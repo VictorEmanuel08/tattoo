@@ -20,6 +20,8 @@ import {
   AiOutlineInstagram,
   AiFillPlusCircle,
   AiOutlineClose,
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
 } from "react-icons/ai";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 
@@ -178,12 +180,11 @@ export function Home() {
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
       imageArray: [
-        "https://via.placeholder.com/200",
-        "https://via.placeholder.com/201",
-        "https://via.placeholder.com/202",
-        "https://via.placeholder.com/203",
-        "https://via.placeholder.com/204",
-        "https://via.placeholder.com/205",
+        "https://www.deheus.com.br/siteassets/animal-nutrition/poultry/corte01.jpg?mode=crop&width=560&height=406",
+        "https://cptstatic.s3.amazonaws.com/imagens/enviadas/materias/materia6330/frangos-de-corte-recomendacoes-em-microelementos-e-vitaminas-cpt.jpg",
+        "https://novonegocio.com.br/wp-content/uploads/2012/12/Como-Comecar-Uma-Criacao-de-Frangos-de-Granja-1-768x591.jpg",
+        "https://www.eaware.com.br/wp-content/uploads/2016/08/0245ec0066351b7d953b9bc2124f3aef.jpg",
+        "https://www.eaware.com.br/wp-content/uploads/2016/08/g_23092013102855.jpg",
       ],
     },
     {
@@ -444,13 +445,16 @@ export function Home() {
                     />
                   </SwiperSlide>
                 ))}
-
                 <div className="slider-controler">
                   <div className="swiper-button-prev slider-arrow">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    {/* <ion-icon name="arrow-back-outline"> */}
+                    <AiOutlineArrowLeft className="arrow-back-outline" />
+                    {/* </ion-icon> */}
                   </div>
                   <div className="swiper-button-next slider-arrow">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                    {/* <ion-icon name="arrow-forward-outline"> */}
+                    <AiOutlineArrowRight className="arrow-forward-outline" />
+                    {/* </ion-icon> */}
                   </div>
                   <div className="swiper-pagination"></div>
                 </div>
@@ -459,6 +463,7 @@ export function Home() {
           </div>
         )}
       </section>
+
       <section className="section2" ref={divsRefs[2]}>
         <div className="image-logo">
           <img className="logo-sections" src={logoPng} alt="Logo" />
