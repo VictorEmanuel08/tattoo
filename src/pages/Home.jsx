@@ -1,16 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
 import "../styles/style.scss";
+//BIBLIOTECAS
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { EffectCoverflow, Pagination, Navigation } from "swiper";
+
+//ASSETS
 import Logo from "../assets/Tattoo CollectioN-1.png";
 import logoPng from "../assets/Tattoo Collection.png";
 
+//ICONS
 import {
   AiOutlineInstagram,
   AiFillPlusCircle,
   AiOutlineClose,
 } from "react-icons/ai";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
-
-import { Link } from "react-router-dom";
 
 export function Home() {
   const divsRefs = [
@@ -50,7 +61,7 @@ export function Home() {
     divsRefs.forEach((ref, index) => {
       revealSection(index);
     });
-  }, []);
+  });
 
   const [imageNamesTattoo, setImageNamesTattoo] = useState([]);
   const [imagesUserTattoo, setImagesUserTattoo] = useState([]);
@@ -145,6 +156,109 @@ export function Home() {
     setImagesUserBody(updatedImages);
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const handleModalClick = (event) => {
+    // Verifica se o clique foi feito no elemento de fundo (background) do modal
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
+
+  const photos = [
+    {
+      index: 1,
+      userImage:
+        "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
+      imageArray: [
+        "https://via.placeholder.com/200",
+        "https://via.placeholder.com/201",
+        "https://via.placeholder.com/202",
+        "https://via.placeholder.com/203",
+        "https://via.placeholder.com/204",
+        "https://via.placeholder.com/205",
+      ],
+    },
+    {
+      index: 2,
+      userImage:
+        "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
+      imageArray: [
+        "https://via.placeholder.com/206",
+        "https://via.placeholder.com/207",
+        "https://via.placeholder.com/208",
+        "https://via.placeholder.com/209",
+        "https://via.placeholder.com/210",
+        "https://via.placeholder.com/211",
+      ],
+    },
+    {
+      index: 3,
+      userImage:
+        "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
+      imageArray: [
+        "https://via.placeholder.com/212",
+        "https://via.placeholder.com/213",
+        "https://via.placeholder.com/214",
+        "https://via.placeholder.com/215",
+        "https://via.placeholder.com/216",
+        "https://via.placeholder.com/217",
+      ],
+    },
+    {
+      index: 4,
+      userImage:
+        "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
+      imageArray: [
+        "https://via.placeholder.com/200",
+        "https://via.placeholder.com/201",
+        "https://via.placeholder.com/202",
+        "https://via.placeholder.com/203",
+        "https://via.placeholder.com/204",
+        "https://via.placeholder.com/205",
+      ],
+    },
+    {
+      index: 5,
+      userImage:
+        "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
+      imageArray: [
+        "https://via.placeholder.com/200",
+        "https://via.placeholder.com/201",
+        "https://via.placeholder.com/202",
+        "https://via.placeholder.com/203",
+        "https://via.placeholder.com/204",
+        "https://via.placeholder.com/205",
+      ],
+    },
+    {
+      index: 6,
+      userImage:
+        "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
+      imageArray: [
+        "https://via.placeholder.com/200",
+        "https://via.placeholder.com/201",
+        "https://via.placeholder.com/202",
+        "https://via.placeholder.com/203",
+        "https://via.placeholder.com/204",
+        "https://via.placeholder.com/205",
+      ],
+    },
+  ];
+
+  const [arrayImages, setArrayImages] = useState([0]);
+  const handleImageClick = (index) => {
+    setArrayImages(photos[index].imageArray);
+    openModal();
+  };
+
   return (
     <div className="page">
       <section className="section0" ref={divsRefs[0]}>
@@ -188,7 +302,162 @@ export function Home() {
         </div>
       </section>
       <section className="section1" ref={divsRefs[1]}>
-        PORTIFOLIO
+        <div className="image-logo">
+          <img className="logo-sections" src={logoPng} alt="Logo" />
+        </div>
+        <div className="portifolio-container-large">
+          <div className="large-row1">
+            {photos.slice(0, 3).map((imageUrl, index) => {
+              return (
+                <div key={index} className="portifolio-image-container">
+                  <img
+                    onClick={() => handleImageClick(index)}
+                    src={imageUrl.userImage}
+                    alt={`Imagem ${index + 1}`}
+                    className="rounded-image"
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className="large-row2">
+            {photos.slice(3, 6).map((imageUrl, index) => (
+              <div key={index} className="portifolio-image-container">
+                <img
+                  onClick={() => handleImageClick(index)}
+                  src={imageUrl.userImage}
+                  alt={`Imagem ${index + 1}`}
+                  className="rounded-image"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="portifolio-container-medium">
+          <div className="medium-row1">
+            {photos.slice(0, 2).map((imageUrl, index) => (
+              <div key={index} className="portifolio-image-container">
+                <img
+                  onClick={() => handleImageClick(index)}
+                  src={imageUrl.userImage}
+                  alt={`Imagem ${index + 1}`}
+                  className="rounded-image"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="medium-row2">
+            {photos.slice(2, 4).map((imageUrl, index) => (
+              <div key={index} className="portifolio-image-container">
+                <img
+                  onClick={() => handleImageClick(index)}
+                  src={imageUrl.userImage}
+                  alt={`Imagem ${index + 1}`}
+                  className="rounded-image"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="medium-row3">
+            {photos.slice(4, 6).map((imageUrl, index) => (
+              <div key={index} className="portifolio-image-container">
+                <img
+                  onClick={() => handleImageClick(index)}
+                  src={imageUrl.userImage}
+                  alt={`Imagem ${index + 1}`}
+                  className="rounded-image"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="portifolio-container-minimum">
+          <div className="minimum-row1">
+            {photos.slice(0, 2).map((imageUrl, index) => (
+              <div key={index} className="portifolio-image-container">
+                <img
+                  onClick={() => handleImageClick(index)}
+                  src={imageUrl.userImage}
+                  alt={`Imagem ${index + 1}`}
+                  className="rounded-image"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="minimum-row2">
+            {photos.slice(2, 4).map((imageUrl, index) => {
+              return (
+                <div key={index} className="portifolio-image-container">
+                  <img
+                    onClick={() => handleImageClick(index)}
+                    src={imageUrl.userImage}
+                    alt={`Imagem ${index + 1}`}
+                    className="rounded-image"
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className="minimum-row3">
+            {photos.slice(4, 6).map((imageUrl, index) => (
+              <div key={index} className="portifolio-image-container">
+                <img
+                  src={imageUrl.userImage}
+                  alt={`Imagem ${index + 1}`}
+                  className="rounded-image"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        {isOpen && (
+          <div className="modal" onClick={handleModalClick}>
+            <div className="modal-content">
+              <Swiper
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={true}
+                loop={true}
+                slidesPerView={"auto"}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 2.5,
+                }}
+                pagination={{ el: ".swiper-pagination", clickable: true }}
+                navigation={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                  clickable: true,
+                }}
+                modules={[EffectCoverflow, Pagination, Navigation]}
+                className="swiper_container"
+              >
+                {arrayImages.map((imageUrl, index) => (
+                  <SwiperSlide>
+                    <img
+                      key={index}
+                      src={imageUrl}
+                      alt={`Imagem ${index}`}
+                      className="modal-image"
+                    />
+                  </SwiperSlide>
+                ))}
+
+                <div className="slider-controler">
+                  <div className="swiper-button-prev slider-arrow">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                  </div>
+                  <div className="swiper-button-next slider-arrow">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                  </div>
+                  <div className="swiper-pagination"></div>
+                </div>
+              </Swiper>
+            </div>
+          </div>
+        )}
       </section>
       <section className="section2" ref={divsRefs[2]}>
         <div className="image-logo">
@@ -313,6 +582,27 @@ export function Home() {
       <section className="section4" ref={divsRefs[4]}>
         SOBRE NÓS
       </section>
+      {/* <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        overlayClassName="modal-overlay"
+        className="modal-content"
+      >
+        {arrayImages.map((imageUrl, index) => (
+          <div key={index}>
+            <img
+              src={imageUrl}
+              alt={`Imagem ${index + 1}`}
+              className="modal-image"
+            />
+          </div>
+        ))}
+        <h2>Hello - I am a modal</h2>
+        asjkan
+        <p>HIIIIIIIIIIIIIIII</p>
+        <button onClick={closeModal}>Close</button>
+      </Modal> */}
     </div>
   );
 }
