@@ -24,6 +24,7 @@ import {
   AiOutlineArrowRight,
 } from "react-icons/ai";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
+import { ModalCalendar } from "../components/ModalCalendar/ModalCalendar";
 
 export function Home() {
   const divsRefs = [
@@ -158,19 +159,19 @@ export function Home() {
     setImagesUserBody(updatedImages);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  function openModal() {
-    setIsOpen(true);
+  const [isOpenModalImage, setIsOpenModalImage] = useState(false);
+  function openModalImage() {
+    setIsOpenModalImage(true);
   }
 
-  function closeModal() {
-    setIsOpen(false);
+  function closeModalImage() {
+    setIsOpenModalImage(false);
   }
 
-  const handleModalClick = (event) => {
+  const handleModalImageClick = (event) => {
     // Verifica se o clique foi feito no elemento de fundo (background) do modal
     if (event.target === event.currentTarget) {
-      closeModal();
+      closeModalImage();
     }
   };
 
@@ -257,7 +258,41 @@ export function Home() {
   const [arrayImages, setArrayImages] = useState([0]);
   const handleImageClick = (index) => {
     setArrayImages(photos[index].imageArray);
-    openModal();
+    openModalImage();
+  };
+
+  const [isOpenModalCalendar, setIsOpenModalCalendar] = useState(false);
+  function openModalCalendar() {
+    setIsOpenModalCalendar(true);
+  }
+
+  function closeModalCalendar() {
+    setIsOpenModalCalendar(false);
+  }
+
+  function handleModalCalendarClick(event) {
+    // Verifica se o clique foi feito no elemento de fundo (background) do modal
+    if (event.target === event.currentTarget) {
+      closeModalCalendar();
+    }
+  }
+
+  function handleCalendarClick() {
+    openModalCalendar();
+  }
+
+  const [nomeTatuador, setNomeTatuador] = useState("");
+  const [imagemTatuador, setImagemTatuador] = useState("");
+  const [dataTattoo, setDataTattoo] = useState("");
+
+  const handleDadosModalCalendar = (
+    nomeTatuador,
+    imagemTatuador,
+    dataTattoo
+  ) => {
+    setNomeTatuador(nomeTatuador);
+    setImagemTatuador(imagemTatuador);
+    setDataTattoo(dataTattoo);
   };
 
   return (
@@ -411,8 +446,8 @@ export function Home() {
             ))}
           </div>
         </div>
-        {isOpen && (
-          <div className="modal" onClick={handleModalClick}>
+        {isOpenModalImage && (
+          <div className="modal" onClick={handleModalImageClick}>
             <div className="modal-content">
               <Swiper
                 effect={"coverflow"}
@@ -573,11 +608,32 @@ export function Home() {
           <div className="form-items">
             <div className="file-label">
               <span>Escolha sua data: </span>
-              <BsFillCalendarCheckFill className="file-icon" />
+              <BsFillCalendarCheckFill
+                className="file-icon"
+                // onClick={openModalCalendar}
+                onClick={handleCalendarClick}
+              />
             </div>
+            {nomeTatuador.length > 0 && dataTattoo.length > 0 ? (
+              <div>
+                <span>Nome do tatuador: {nomeTatuador}</span>
+                <img src={imagemTatuador} alt={nomeTatuador} />
+                <br></br>
+                <span>Data da tatuagem: {dataTattoo}</span>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-          <button type="submit" className="submit-button">
-            <span>Enviar</span>
+          {isOpenModalCalendar && (
+            <ModalCalendar
+              onClose={closeModalCalendar}
+              onClick={handleModalCalendarClick}
+              onDadosModalCalendar={handleDadosModalCalendar}
+            />
+          )}
+          <button type="button" className="submit-button">
+            Enviar
           </button>
         </form>
       </section>
@@ -587,27 +643,6 @@ export function Home() {
       <section className="section4" ref={divsRefs[4]}>
         SOBRE NÓS
       </section>
-      {/* <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-        overlayClassName="modal-overlay"
-        className="modal-content"
-      >
-        {arrayImages.map((imageUrl, index) => (
-          <div key={index}>
-            <img
-              src={imageUrl}
-              alt={`Imagem ${index + 1}`}
-              className="modal-image"
-            />
-          </div>
-        ))}
-        <h2>Hello - I am a modal</h2>
-        asjkan
-        <p>HIIIIIIIIIIIIIIII</p>
-        <button onClick={closeModal}>Close</button>
-      </Modal> */}
     </div>
   );
 }
