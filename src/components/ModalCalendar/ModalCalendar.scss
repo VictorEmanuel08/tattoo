@@ -1,3 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+/*=========  VARIAVEIS  =========*/
+// cores
+$body-color: #000000;
+$body-color-second: #00ff00;
+$color-form-alt: #191970;
+$text-color: #ffffff;
+
+// tamanhos
+$radius-size: 0.7rem;
+
 .calendar {
   position: fixed;
   top: 0;
@@ -14,11 +26,105 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+// .calendar-content {
+//   display: flex;
+//   flex-direction: column;
+//   background-color: #ffffff;
+//   width: 50%;
+// //   border-radius: $radius-size;
+//   border: 0.1rem #00FF00 solid;
+// }
+
 .calendar-content {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  // align-items: center;
+  // justify-content: center;
+  background-color: $text-color;
+  color: $color-form-alt;
   width: 50%;
-//   border-radius: $radius-size;
-  border: 0.1rem #00FF00 solid;
+  border-radius: $radius-size;
+  border: 0.1rem $body-color-second solid;
+  padding: 1rem;
+
+  .form-text {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-items {
+    width: 100%;
+    display: flex;
+    // align-items: center;
+    margin-bottom: 1rem;
+
+    label {
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: $radius-size;
+      border: 2px #ccc solid;
+    }
+
+    input[type="date"] {
+      /* Estilize o ícone do calendário */
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .division2 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    .select-modal {
+      width: 100%;
+      display: flex;
+      // align-items: center;
+      select {
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+
+    .image-modal {
+      display: flex;
+      // align-items: center;
+      margin-left: 1rem;
+
+      .image-tatuador {
+        width: 3rem;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .button-ok {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: $radius-size;
+      cursor: pointer;
+      background-color: #f0f0f0;
+      color: $color-form-alt;
+      // background-color: $color-form-alt;
+      
+      &:hover {
+        background-color: #e0e0e0;  
+        // background-color: $text-color;
+        // color: $color-form-alt;
+      }
+    }
+  }
 }

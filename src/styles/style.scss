@@ -316,6 +316,7 @@ body {
     }
   }
   .form-container {
+    z-index: 1;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -544,6 +545,24 @@ body {
 }
 
 @media screen and (max-width: 468px) {
+  .section0 {
+    padding-inline: 0rem;
+
+    .links-container {
+      height: 55vh;
+    }
+    .link-with-icons {
+      bottom: 0.25rem;
+    }
+    .link-with-icons .icon {
+      font-size: 1.7rem;
+    }
+  
+    .link-with-icons:hover .icon {
+      font-size: 1.9rem; /* Ajuste o tamanho desejado para o crescimento */
+    }
+  }
+
   .section1 {
     .image-logo {
       display: flex;
@@ -552,8 +571,7 @@ body {
       .logo-sections {
         position: absolute;
         top: 0;
-        max-width: 20%;
-        max-height: 20%;
+        max-width: 40%;
       }
     }
     .portifolio-container-large {

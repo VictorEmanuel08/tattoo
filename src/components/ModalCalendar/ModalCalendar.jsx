@@ -6,41 +6,42 @@ export function ModalCalendar({ onClick, onDadosModalCalendar, onClose }) {
   const [newDate, setnewDate] = useState(""); //variavel para enviar (dd/mm/YYYY)
   const [nomeTatuador, setNomeTatuador] = useState("");
   const [imageTatuador, setImageTatuador] = useState("");
+  const [disableText, setDisableText] = useState(false);
 
   const tatuadores = [
     {
       index: 0,
-      nome: "tatuador 1",
+      nome: "Tatuador 1",
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
     },
     {
       index: 1,
-      nome: "tatuador 2",
+      nome: "Tatuador 2",
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
     },
     {
       index: 2,
-      nome: "tatuador 3",
+      nome: "Tatuador 3",
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
     },
     {
       index: 3,
-      nome: "tatuador 4",
+      nome: "Tatuador 4",
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
     },
     {
       index: 4,
-      nome: "tatuador 5",
+      nome: "Tatuador 5",
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
     },
     {
       index: 5,
-      nome: "tatuador 6",
+      nome: "Tatuador 6",
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
     },
@@ -65,6 +66,7 @@ export function ModalCalendar({ onClick, onDadosModalCalendar, onClose }) {
     // if (selectedIndex >= 0 && selectedIndex < tatuadores.length) {
     setNomeTatuador(tatuadores[selectedIndex].nome);
     setImageTatuador(tatuadores[selectedIndex].userImage);
+    setDisableText(true); // Desabilitar o texto "Selecione um tatuador:"
     // }
   };
 
@@ -93,29 +95,39 @@ export function ModalCalendar({ onClick, onDadosModalCalendar, onClose }) {
         </div>
         <div className="form-items">
           <label htmlFor="nomes">Tatuador:</label>
-          <select
-            id="nomes"
-            name="nomes"
-            // value={nomeTatuador}
-            onChange={handleInfoTatuador}
-          >
-            <option value="">Selecione um tatuador:</option>
-            {tatuadores.map((tatuador) => (
-              <option key={tatuador.index} value={tatuador.index}>
-                {tatuador.nome}
-              </option>
-            ))}
-          </select>
-        </div>
-        {imageTatuador.length > 0 ? (
-          <div>
-            <img src={imageTatuador} alt="imagem" />
+          <div className="division2">
+            <div className="select-modal">
+              <select
+                id="nomes"
+                name="nomes"
+                // value={nomeTatuador}
+                onChange={handleInfoTatuador}
+              >
+                <option value="" disabled={disableText}>
+                  Selecione um tatuador:
+                </option>
+                {tatuadores.map((tatuador) => (
+                  <option key={tatuador.index} value={tatuador.index}>
+                    {tatuador.nome}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {imageTatuador.length > 0 ? (
+              <div className="image-modal">
+                <img
+                  src={imageTatuador}
+                  className="image-tatuador"
+                  alt="imagem"
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-        ) : (
-          ""
-        )}
+        </div>
         {nomeTatuador.length > 0 && newDate.length > 0 ? (
-          <div>
+          <div className="button-ok">
             <button type="button" onClick={handleEnvair}>
               Ok
             </button>
