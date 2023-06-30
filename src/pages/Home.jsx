@@ -607,7 +607,7 @@ export function Home() {
           </div>
           <div className="form-items">
             <div className="file-label">
-              <span>Escolha sua data: </span>
+              <span>Escolha seu tatuador e sua data: </span>
               <BsFillCalendarCheckFill
                 className="file-icon"
                 // onClick={openModalCalendar}
@@ -615,11 +615,16 @@ export function Home() {
               />
             </div>
             {nomeTatuador.length > 0 && dataTattoo.length > 0 ? (
-              <div>
-                <span>Nome do tatuador: {nomeTatuador}</span>
-                <img src={imagemTatuador} alt={nomeTatuador} />
-                <br></br>
-                <span>Data da tatuagem: {dataTattoo}</span>
+              <div className="info-modal">
+                <div className="info-tatuador-modal">
+                  <span>Nome do tatuador: {nomeTatuador}</span>
+                  <div className="info-image-modal">
+                    <img className="info-image" src={imagemTatuador} alt={nomeTatuador} />
+                  </div>
+                </div>
+                <div className="info-data-modal">
+                  <span>Data da tatuagem: {dataTattoo}</span>
+                </div>
               </div>
             ) : (
               ""

@@ -323,6 +323,7 @@ body {
     background-color: $body-color-second;
     padding: 1rem;
     border-radius: $radius-size;
+    margin-top: 5rem;
   }
   .div1 {
     width: 100%;
@@ -411,6 +412,31 @@ body {
   .file-name {
     padding: 0.2rem;
     font-size: 0.75rem;
+  }
+
+  .info-modal {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: $text-color;
+    border-radius: $radius-size;
+    margin-top: 1rem;
+    padding: 1rem;
+    .info-tatuador-modal {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: 1rem;
+      .info-image-modal {
+        display: flex;
+        margin-left: 1rem;
+        .info-image {
+          width: 3rem;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    }
   }
 
   .submit-button {
@@ -557,7 +583,7 @@ body {
     .link-with-icons .icon {
       font-size: 1.7rem;
     }
-  
+
     .link-with-icons:hover .icon {
       font-size: 1.9rem; /* Ajuste o tamanho desejado para o crescimento */
     }
