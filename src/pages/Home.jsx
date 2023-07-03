@@ -25,6 +25,7 @@ import {
 } from "react-icons/ai";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { ModalCalendar } from "../components/ModalCalendar/ModalCalendar";
+import { Localização } from "../components/ModalCalendar/Localização/Localização";
 
 export function Home() {
   const divsRefs = [
@@ -327,7 +328,7 @@ export function Home() {
             </div>
             <div className="link-with-icons">
               <Link
-                to="https://instagram.com"
+                to="https://www.instagram.com/_tattoocollection/"
                 target="_blank"
                 style={{ color: "inherit" }}
               >
@@ -619,7 +620,11 @@ export function Home() {
                 <div className="info-tatuador-modal">
                   <span>Nome do tatuador: {nomeTatuador}</span>
                   <div className="info-image-modal">
-                    <img className="info-image" src={imagemTatuador} alt={nomeTatuador} />
+                    <img
+                      className="info-image"
+                      src={imagemTatuador}
+                      alt={nomeTatuador}
+                    />
                   </div>
                 </div>
                 <div className="info-data-modal">
@@ -643,7 +648,15 @@ export function Home() {
         </form>
       </section>
       <section className="section3" ref={divsRefs[3]}>
-        LOCALIZAÇÃO
+        <div className="image-logo">
+          <img className="logo-sections" src={logoPng} alt="Logo" />
+        </div>
+        <div className="container-localizacao">
+          <div>
+            <Localização/>
+          </div>
+          <div>INFO LOJA</div>
+        </div>
       </section>
       <section className="section4" ref={divsRefs[4]}>
         SOBRE NÓS
