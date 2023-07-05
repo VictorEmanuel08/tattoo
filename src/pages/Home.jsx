@@ -472,9 +472,8 @@ export function Home() {
                 className="swiper_container"
               >
                 {arrayImages.map((imageUrl, index) => (
-                  <SwiperSlide>
+                  <SwiperSlide key={index}>
                     <img
-                      key={index}
                       src={imageUrl}
                       alt={`Imagem ${index}`}
                       className="modal-image"
@@ -653,7 +652,7 @@ export function Home() {
         </div>
         <div className="container-localizacao">
           <div>
-            <Localização/>
+            <Localização />
           </div>
           <div>INFO LOJA</div>
         </div>
