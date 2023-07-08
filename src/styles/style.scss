@@ -473,11 +473,14 @@ body {
   .container-localizacao {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    // justify-content: space-around;
+    // justify-content: space-between;
+    justify-content: space-around;
     flex-direction: row;
     width: 100%;
     color: #ffffff;
+    .map-localizacao {
+      border: 2px $body-color-second solid;
+    }
   }
 }
 

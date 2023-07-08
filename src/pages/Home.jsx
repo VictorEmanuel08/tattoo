@@ -25,7 +25,7 @@ import {
 } from "react-icons/ai";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { ModalCalendar } from "../components/ModalCalendar/ModalCalendar";
-import { Localização } from "../components/ModalCalendar/Localização/Localização";
+import { Localização } from "../components/Localização/Localização";
 
 export function Home() {
   const divsRefs = [
@@ -651,7 +651,7 @@ export function Home() {
           <img className="logo-sections" src={logoPng} alt="Logo" />
         </div>
         <div className="container-localizacao">
-          <div>
+          <div className="map-localizacao">
             <Localização />
           </div>
           <div>INFO LOJA</div>
