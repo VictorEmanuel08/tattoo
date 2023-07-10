@@ -654,7 +654,17 @@ export function Home() {
           <div className="map-localizacao">
             <Localização />
           </div>
-          <div>INFO LOJA</div>
+          <div className="map-info">
+            <p className="map-info-text">VENHA NOS VISITAR</p>
+            <img
+              className="map-info-foto"
+              src="https://as2.ftcdn.net/v2/jpg/03/22/22/63/1000_F_322226303_3F8ejwKw3RpqTrYdel59DoPKVFFPZ4eS.jpg"
+              alt="local"
+            />
+          </div>
+        </div>
+        <div className="text-localizacao">
+          <p>Av. Daniel de La Touche, 987 - Cohama, São Luís - MA, 65074-115</p>
         </div>
       </section>
       <section className="section4" ref={divsRefs[4]}>

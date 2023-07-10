@@ -8,26 +8,27 @@ export function Localização() {
   });
 
   const position = {
-    lat: -2.527688521485413,
-    lng: -44.302991310812466,
+    lat: -2.526620438214027,
+    lng: -44.25378120527478,
   };
 
   return (
     <div className="map">
       {isLoaded ? (
         <GoogleMap
-          mapContainerStyle={{ width: "400px", height: "400px" }}
+          id="map-container"
+          // mapContainerStyle={{ width: "25rem", height: "400px" }}
           center={position}
           zoom={15}
         >
           <Marker
             position={position}
-            options={{
-              label: {
-                text: "Posição Teste",
-                className: "map-marker",
-              },
-            }}
+            // options={{
+            //   label: {
+            //     text: "Localização",
+            //     className: "map-marker",
+            //   },
+            // }}
           />
         </GoogleMap>
       ) : (
