@@ -26,8 +26,27 @@ import {
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { ModalCalendar } from "../components/ModalCalendar/ModalCalendar";
 import { Localização } from "../components/Localização/Localização";
+import { SliderSobreNos } from "../components/SliderSobreNos/SliderSobreNos";
 
 export function Home() {
+  //porcentagem Scroll ao rolar
+  const indicatorRef = useRef(null);
+
+  useEffect(() => {
+    const maxHeight = document.body.scrollHeight - window.innerHeight;
+
+    const handleScroll = () => {
+      const percentage = (window.scrollY / maxHeight) * 100;
+      indicatorRef.current.style.width = `${percentage}%`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const divsRefs = [
     useRef(null),
     useRef(null),
@@ -298,6 +317,7 @@ export function Home() {
 
   return (
     <div className="page">
+      <div ref={indicatorRef} id="indicator"></div>
       <section className="section0" ref={divsRefs[0]}>
         <div className="left">
           <div className="image-container">
@@ -668,7 +688,12 @@ export function Home() {
         </div>
       </section>
       <section className="section4" ref={divsRefs[4]}>
-        SOBRE NÓS
+        <div className="image-logo">
+          <img className="logo-sections" src={logoPng} alt="Logo" />
+        </div>
+        <div className="container-sobre-nos">
+          <SliderSobreNos />
+        </div>
       </section>
     </div>
   );
