@@ -242,6 +242,20 @@ body {
     max-width: 85%;
     border-radius: $radius-size;
     border: 0.1rem $body-color-second solid;
+    position: relative;
+  }
+
+  .close-modal {
+    z-index: 2;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.25rem;
+    color: $text-color;
+    cursor: pointer;
+  }
+  .close-modal:hover {
+    color: $color-form-alt;
   }
 
   .swiper_container {
@@ -558,6 +572,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .slider-sobre-nos {
+    width: 90%;
   }
 }
 

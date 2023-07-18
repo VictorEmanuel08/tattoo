@@ -201,7 +201,6 @@ export function Home() {
       userImage:
         "https://kanto.legiaodosherois.com.br/w250-h250-gnw-cfill-q95-gcc/wp-content/uploads/2021/07/legiao_Ry1hNJoxOzpY.jpg.webp",
       imageArray: [
-        "https://www.deheus.com.br/siteassets/animal-nutrition/poultry/corte01.jpg?mode=crop&width=560&height=406",
         "https://cptstatic.s3.amazonaws.com/imagens/enviadas/materias/materia6330/frangos-de-corte-recomendacoes-em-microelementos-e-vitaminas-cpt.jpg",
         "https://novonegocio.com.br/wp-content/uploads/2012/12/Como-Comecar-Uma-Criacao-de-Frangos-de-Granja-1-768x591.jpg",
         "https://www.eaware.com.br/wp-content/uploads/2016/08/0245ec0066351b7d953b9bc2124f3aef.jpg",
@@ -470,6 +469,7 @@ export function Home() {
         {isOpenModalImage && (
           <div className="modal" onClick={handleModalImageClick}>
             <div className="modal-content">
+              <div className="close-modal" onClick={closeModalImage}>X</div>
               <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -692,7 +692,7 @@ export function Home() {
           <img className="logo-sections" src={logoPng} alt="Logo" />
         </div>
         <div className="container-sobre-nos">
-          <SliderSobreNos />
+          <SliderSobreNos className="slider-sobre-nos" />
         </div>
       </section>
     </div>
