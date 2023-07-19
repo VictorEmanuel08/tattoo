@@ -76,19 +76,25 @@ export function SliderSobreNos() {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className="swiper_container"
       >
-        {tatuadores.map((tatuador) => (
-          <SwiperSlide key={tatuador.index}>
-            <div className="slide-item">
-              <div className="slide-info">
-                <img src={tatuador.userImage} alt={tatuador.nome} />
-                <p>{tatuador.nome}</p>
+        {tatuadores.map((tatuador, index) => {
+          if (index === tatuadores.length - 1) {
+            return null; //ignorar o ultimo item do vetor tatuadores
+          }
+          return (
+            <SwiperSlide key={tatuador.index}>
+              <div className="slide-item">
+                <div className="slide-info">
+                  <img src={tatuador.userImage} alt={tatuador.nome} />
+                  <p>{tatuador.nome}</p>
+                </div>
+                <div className="slide-description">
+                  <p>{tatuador.description}</p>
+                </div>
               </div>
-              <div className="slide-description">
-                <p>{tatuador.description}</p>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
+
         <div className="slider-controler">
           <div className="swiper-button-prev slider-arrow">
             <ion-icon name="arrow-back-outline"></ion-icon>

@@ -469,7 +469,9 @@ export function Home() {
         {isOpenModalImage && (
           <div className="modal" onClick={handleModalImageClick}>
             <div className="modal-content">
-              <div className="close-modal" onClick={closeModalImage}>X</div>
+              <div className="close-modal" onClick={closeModalImage}>
+                X
+              </div>
               <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -676,11 +678,13 @@ export function Home() {
           </div>
           <div className="map-info">
             <p className="map-info-text">VENHA NOS VISITAR</p>
-            <img
-              className="map-info-foto"
-              src="https://as2.ftcdn.net/v2/jpg/03/22/22/63/1000_F_322226303_3F8ejwKw3RpqTrYdel59DoPKVFFPZ4eS.jpg"
-              alt="local"
-            />
+            <div className="foto-lugar">
+              <img
+                className="map-info-foto"
+                src="https://as2.ftcdn.net/v2/jpg/03/22/22/63/1000_F_322226303_3F8ejwKw3RpqTrYdel59DoPKVFFPZ4eS.jpg"
+                alt="local"
+              />
+            </div>
           </div>
         </div>
         <div className="text-localizacao">
